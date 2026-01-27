@@ -5,6 +5,8 @@ node_modules/
 *.zip
 dist/
 build/
+ACL-Audit-v*-PRODUCTION/
+ACL-Audit-v*-FIXED/
 
 # Logs
 *.log
@@ -25,6 +27,14 @@ Thumbs.db
 .env
 .env.local
 
+# Secrets and credentials
+bk-*.json
+*-service-account*.json
+*.pem
+*.key
+credentials.json
+token.json
+
 # Test files
 test-data/
 test-results/
@@ -32,4 +42,22 @@ test-results/
 # Temporary files
 *.tmp
 *.temp
+*.7z
+
+# CI/CD secrets (if stored locally)
+.github/secrets/
+.gitlab/secrets/
+
+
+
+
+
+
+
+
+
+
+
+
+
 

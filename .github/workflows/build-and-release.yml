@@ -1,0 +1,70 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # Триггер на теги вида v6.5.12
+  workflow_dispatch:  # Ручной запуск
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Extract version from manifest
+      id: get_version
+      run: |
+        $version = (Get-Content manifest.json | ConvertFrom-Json).version
+        echo "VERSION=$version" >> $env:GITHUB_ENV
+        echo "Version extracted: $version"
+        
+    - name: Build package
+      run: node build-package.js
+      
+    - name: Verify ZIP exists
+      run: |
+        $zipFile = "ACL-Audit-v$env:VERSION-PRODUCTION.zip"
+        if (Test-Path $zipFile) {
+          $size = (Get-Item $zipFile).Length / 1MB
+          Write-Host "✅ ZIP создан: $zipFile ($([math]::Round($size, 2)) MB)"
+        } else {
+          Write-Host "❌ ZIP файл не найден!"
+          exit 1
+        }
+        
+    - name: Create Release
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v1
+      with:
+        files: ACL-Audit-v*-PRODUCTION.zip
+        name: Release ${{ env.VERSION }}
+        body: |
+          ## ACL Audit v${{ env.VERSION }}
+          
+          Автоматически собранный пакет для Chrome Web Store.
+          
+          ### 📦 Установка
+          1. Скачайте ZIP файл ниже
+          2. Распакуйте архив
+          3. Откройте `chrome://extensions/`
+          4. Включите "Режим разработчика"
+          5. Нажмите "Загрузить распакованное расширение"
+          6. Выберите распакованную папку
+          
+          ### 📋 Изменения
+          См. [CHANGELOG](CHANGELOG-v${{ env.VERSION }}.md) для деталей.
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
