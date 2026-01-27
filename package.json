@@ -1,0 +1,20 @@
+{
+  "name": "acl-audit-browser-automation",
+  "version": "1.0.0",
+  "description": "Browser automation for testing ACL Audit extension",
+  "main": "browser-automation-test.js",
+  "scripts": {
+    "test": "node browser-automation-test.js"
+  },
+  "keywords": [
+    "automation",
+    "testing",
+    "puppeteer"
+  ],
+  "author": "Alex30091979 <163242494+Alex30091979@users.noreply.github.com> (https://github.com/Alex30091979)",
+  "license": "UNLICENSED",
+  "repository": { "type": "git", "url": "https://github.com/Alex30091979/acl-audit-terms.git" },
+  "dependencies": {
+    "puppeteer": "^21.11.0"
+  }
+}

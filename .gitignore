@@ -48,6 +48,9 @@ test-results/
 .github/secrets/
 .gitlab/secrets/
 
+# GPG keygen batch (local use only)
+.gnupg-gen-key-batch.txt
+
 
 
 

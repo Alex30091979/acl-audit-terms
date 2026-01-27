@@ -109,9 +109,19 @@ node build-package.js
 ### Версионирование
 Версия указывается в `manifest.json` и автоматически синхронизируется во всех файлах при сборке.
 
+## 👤 Автор и правообладатель
+
+**Copyright (c) 2024–2026 Alex30091979**
+
+- GitHub: [Alex30091979](https://github.com/Alex30091979)
+- GitLab: [Alex30091979](https://gitlab.com/Alex30091979)
+- Email: 163242494+Alex30091979@users.noreply.github.com
+
+См. также [AUTHORS](AUTHORS), [NOTICE](NOTICE), [LICENSE](LICENSE).
+
 ## 📝 Лицензия
 
-Proprietary — Все права защищены. См. [TERMS_OF_SERVICE.md](TERMS_OF_SERVICE.md)
+Proprietary — Все права защищены. См. [LICENSE](LICENSE), [TERMS_OF_SERVICE.md](TERMS_OF_SERVICE.md)
 
 ## 🔗 Ссылки
 
